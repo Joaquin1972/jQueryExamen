@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAMEN</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.min.js"
+        integrity="sha512-VjRpiWhUqdNa9bwBV7LnlG8CwsCVPenFyOQTSRTOGHw/tjtME96zthh0Vv9Itf3i8w4CkUrdYaS6+dAt1m1YXQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            //EJERCICIO 1
+            $("#aplicaEstilo").click(function () {
+                var size = $("#tamano").val()
+                var font = $("#tipoLetra").val()
+                //alert(size + font)
+                $(".parrafos").css(
+                    {
+                        fontFamily: font,
+                        fontSize: size
+                    }
+                )
+            })
+            //EJERCICIO 2
+            $(".parrafos2").hover(
+                function () {
+                    $(this).css("color", "blue")
+                },
+                function () {
+                    $(this).css("color", "black")
+                }
+            )
+            //EJERCICIO 3
+            $("#anadirTextoP").click(function () {
+                if ($("#nuevoTexto").val() != "") {
+                    $(".parrafos2").prepend($("#nuevoTexto").val() + "<br>");
+                }
+                else {
+                    alert("Añade texto")
+                }
+            });
+            $("#anadirTextoF").click(function () {
+                if ($("#nuevoTexto").val() != "") {
+                    $(".parrafos2").append("<br>" + $("#nuevoTexto").val())
+                }
+                else {
+                    alert("Añade texto")
+                }
+            })
+            $("#borraTextos").click(function () {
+                $(".parrafos2").empty();
+            })
+            //EJERCICIO 4
+            $(".cabecera").click(function () {
+                var contenido = $(this).next();
+                if (contenido.is(":visible")) {
+                    $(this).text("Saber más")
+                    contenido.slideToggle(1000);
+                } else {
+                    $(this).text("Saber menos")
+                    contenido.slideToggle("fast");
+                }
+            })
+            //EJERCICIO 5
+            $("#animaCuadrado").click(function () {
+                var c = $(".cuadrado");
+                c.animate({ left: "300px" }, 3000)
+                    .animate({ borderRadius: "50%" }, 2000)
+                    .animate({ backgroundColor: "red" }, 1000)
+                    .animate({
+                        left: "0px",
+                        borderRadius: "0%",
+                        backgroundColor: "blue"
+                    }, 4000, function () {
+                        alert("Animación terminada");
+                    });
+            });
+
+            $("#paraCuadrado").click(function(){
+                $(".cuadrado").stop(true)
+            })
+
+          
+
+           
+   
+
+
+        });
+
+
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>EXAMEN jQUERY PARTE PRACTICA</h1>
+    </header>
+    <nav>
+        <a href="instrucciones.html">Volver a instrucciones</a>
+    </nav>
+    <main>
+        <div class="panel">
+            Tamaño Fuente
+            <select id="tamano">
+                <option value="16px" selected>16px</option>
+                <option value="18px">18px</option>
+                <option value="20px">20px</option>
+                <option value="22px">22px</option>
+            </select>
+            Tipo Letra
+            <select id="tipoLetra">
+                <option value="verdana" selected>Verdana</option>
+                <option value="arial">Arial</option>
+                <option value="courier">Courier</option>
+                <option value="impact">Impact</option>
+            </select>
+            <br> <br>
+            <button id="aplicaEstilo">Aplica Estilo</button>
+        </div>
+        <div class="parrafos">
+            <h3>Párrafos</h3>
+            <div class="cabecera">Saber menos</div>
+            <div class="parrafos2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati ea
+                quos suscipit velit possimus
+                ipsa officia! Illum unde soluta porro facere aliquid. Blanditiis nemo iusto corrupti voluptatibus, omnis
+                obcaecati reiciendis?</div>
+            <div class="cabecera">Saber menos</div>
+            <div class="parrafos2">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati ea quos suscipit
+                velit possimus
+                ipsa officia! Illum unde soluta porro facere aliquid. Blanditiis nemo iusto corrupti voluptatibus, omnis
+                obcaecati reiciendis?</div>
+        </div>
+
+        <div class="panel">
+            Textarea<br>
+            <textarea name="nuevo" id="nuevoTexto" cols="30" rows="5"></textarea><br>
+            <button id="anadirTextoP">Añadir Texto al principio</button>
+            <button id="anadirTextoF">Añadir Texto al final</button>
+            <button id="borraTextos">Borrar</button>
+        </div>
+        <br><br>
+        <button id="animaCuadrado">Anima Cuadrado</button>
+        <button id="paraCuadrado">Stop</button>
+        <div class="cuadrado"></div>
+    </main>
+</body>
+
+</html>
